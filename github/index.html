@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Портфолио видеомонтажа</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800;900&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: монтажный стол. Шоурил во всю ширину, ниже дорожки V1/V2/V3 с работами, подписи как таймкоды */
+:root{
+  --bg:#eef0f7; --surface:#ffffff; --fg:#151a33; --muted:#5b6285; --line:#d5d9e8;
+  --accent:#ffc21a; --accent-ink:#2a2100; --cut:#e5484d; --track:#3e5bd9; --shade:rgba(21,26,51,.10);
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1229; --surface:#181c3a; --fg:#eef0fb; --muted:#9aa1c6; --line:#2a3060;
+  --accent:#ffc21a; --accent-ink:#2a2100; --cut:#ff6b6f; --track:#8098ff; --shade:rgba(0,0,0,.45); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1229; --surface:#181c3a; --fg:#eef0fb; --muted:#9aa1c6; --line:#2a3060;
+  --accent:#ffc21a; --accent-ink:#2a2100; --cut:#ff6b6f; --track:#8098ff; --shade:rgba(0,0,0,.45); color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--body)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 72px;display:grid;gap:88px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.08}
+h2{font-weight:800;font-size:clamp(1.5rem,3.2vw,2.3rem)}
+h3{font-weight:500;font-size:.98rem;line-height:1.3}
+p{margin:0;max-width:62ch}
+.tag{font:600 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:4px;background:var(--track);color:#fff;white-space:nowrap}
+.mono{font:500 .78rem var(--mono);letter-spacing:.04em;color:var(--muted)}
+video,img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--track);outline-offset:3px}
+
+/* hero */
+.hero{display:grid;gap:28px}
+.top{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.logo{font:900 1.1rem var(--display);letter-spacing:.02em}
+.hero h1{font-weight:900;font-size:clamp(2.2rem,7vw,5.2rem);letter-spacing:-.02em}
+.hero h1 em{font-style:normal;background:var(--accent);color:var(--accent-ink);padding:0 .18em;border-radius:.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.lead{font-size:1.15rem;color:var(--muted)}
+.reel{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -30px var(--shade);background:#000}
+.showreel{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.reel video{width:100%;aspect-ratio:9/16;object-fit:cover}
+@media (max-width:560px){.showreel{grid-template-columns:repeat(3,1fr);gap:8px}.reel .rec{font-size:.6rem;left:6px;top:6px}}
+.reel .rec{position:absolute;left:14px;top:14px;display:flex;gap:8px;align-items:center;font:600 .74rem var(--mono);color:#fff;background:rgba(0,0,0,.55);padding:5px 10px;border-radius:999px}
+.reel .rec::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cut)}
+.ruler{position:relative;height:34px;border-block:1px solid var(--line);
+  background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 24px)}
+.ruler span{position:absolute;top:0;bottom:0;left:0;width:2px;background:var(--cut)}
+.ruler span::after{content:"";position:absolute;top:-6px;left:-5px;border:6px solid transparent;border-top-color:var(--cut)}
+.ruler i{position:absolute;bottom:4px;font:600 .68rem var(--mono);color:var(--muted);font-style:normal}
+.facts{display:flex;flex-wrap:wrap;gap:10px}
+.facts span{font:500 .9rem var(--body);padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+
+section{display:grid;gap:28px}
+.head{display:grid;grid-template-columns:auto 1fr;gap:12px 14px;align-items:center}
+.head p{grid-column:1/-1;color:var(--muted)}
+
+/* long */
+.long{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:24px}
+.card{display:grid;gap:12px;align-content:start;min-width:0}
+.frame{border-radius:10px;overflow:hidden;background:#000;box-shadow:0 18px 40px -24px var(--shade)}
+.long video{width:100%;aspect-ratio:16/9}
+.stats{display:flex;flex-wrap:wrap;gap:6px 16px;font:600 .8rem var(--mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.stats b{color:var(--track)}
+.card p{font-size:.93rem;color:var(--muted)}
+
+/* thumbs */
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.thumbs button{all:unset;cursor:zoom-in;display:grid;gap:8px;min-width:0}
+.thumbs img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;transition:transform .25s ease,box-shadow .25s ease}
+.thumbs button:hover img,.thumbs button:focus-visible img{transform:translateY(-4px) rotate(-.6deg);box-shadow:0 18px 30px -18px var(--shade)}
+.thumbs span{font-size:.84rem;color:var(--muted)}
+.box{position:fixed;inset:0;background:rgba(8,10,24,.88);display:grid;place-items:center;padding:20px;z-index:10;cursor:zoom-out}
+.box img{max-height:88vh;border-radius:10px}
+
+/* vertical */
+.vert{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px}
+.vert video{width:100%;aspect-ratio:9/16}
+.vert .frame{border-radius:14px}
+
+footer{display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;align-items:center;border-top:2px solid var(--fg);padding-top:16px}
+@media (prefers-reduced-motion:no-preference){.ruler span{animation:play 12s linear infinite}}
+@keyframes play{from{left:0}to{left:100%}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="top"><span class="tag">видеомонтаж</span><span class="mono">REELS · SHORTS · YOUTUBE · 1080p</span></div>
+    <h1>Монтаж, который <em>досматривают</em></h1>
+    <p class="lead">Вертикальные ролики для Reels, Shorts, TikTok и VK Клипов, монтаж YouTube-роликов, анимация, титры, озвучка и обложки. Из ваших исходников делаю готовый ролик, который не стыдно выложить.</p>
+    <div class="showreel"><div class="reel"><video src="kai.mp4" poster="kai.jpg" autoplay muted loop playsinline></video><span class="rec">REELS</span></div><div class="reel"><video src="znak.mp4" poster="znak.jpg" autoplay muted loop playsinline></video><span class="rec">АНИМАЦИЯ</span></div><div class="reel"><video src="mishel.mp4" poster="mishel.jpg" autoplay muted loop playsinline></video><span class="rec">TIKTOK</span></div></div>
+    <div class="ruler" aria-hidden="true"><span></span><i style="left:0">00:00</i><i style="left:24%">00:05</i><i style="left:49%">00:10</i><i style="left:74%">00:15</i></div>
+    <div class="facts"><span>Reels, Shorts, TikTok</span><span>YouTube-ролики</span><span>анимация и титры</span><span>субтитры и озвучка</span><span>превью и обложки</span></div>
+  </header>
+
+  <section id="shorts">
+    <div class="head"><span class="tag">V1</span><h2>Вертикальные ролики и анимация</h2>
+      <p>Ролики 9:16: анимированные персонажи, текст в такт музыке, мини-сериалы с озвучкой. Звук включается в плеере.</p></div>
+    <div class="vert">
+      <div class="card"><div class="frame"><video src="znak.mp4" poster="znak.jpg" controls preload="none" playsinline></video></div><h3>Мультклип с двумя персонажами</h3></div>
+      <div class="card"><div class="frame"><video src="kai.mp4" poster="kai.jpg" controls preload="none" playsinline></video></div><h3>Поп-арт клип</h3></div>
+      <div class="card"><div class="frame"><video src="mishel.mp4" poster="mishel.jpg" controls preload="none" playsinline></video></div><h3>Клип в псевдо-3D</h3></div>
+      <div class="card"><div class="frame"><video src="basta.mp4" poster="basta.jpg" controls preload="none" playsinline></video></div><h3>Кинетический текст под трек</h3></div>
+      <div class="card"><div class="frame"><video src="pavlik.mp4" poster="pavlik.jpg" controls preload="none" playsinline></video></div><h3>Анимационный сериал, серия 1</h3></div>
+      <div class="card"><div class="frame"><video src="gostyam.mp4" poster="gostyam.jpg" controls preload="none" playsinline></video></div><h3>Сериал с персонажем-банкой</h3></div>
+    </div>
+  </section>
+
+  <section id="long">
+    <div class="head"><span class="tag">V2</span><h2>YouTube-ролики</h2>
+      <p>Динамичный монтаж длинных роликов: цепляющее начало, зумы, графика, звуковые эффекты и субтитры. Из полуторачасовой записи собираю ролик на 10 минут. Здесь первые 20 секунд.</p></div>
+    <div class="long">
+      <div class="card"><div class="frame"><video src="chop.mp4" poster="chop.jpg" controls preload="none" playsinline></video></div>
+        <h3>Игровой ролик, 12 минут</h3>
+        <div class="stats"><span>12:12</span><span>CTR <b>4,7 %</b></span><span>до 0:30 <b>60 %</b></span></div>
+        <p>Сделан в двух версиях, русской и английской, со своей озвучкой и субтитрами.</p></div>
+      <div class="card"><div class="frame"><video src="drill.mp4" poster="drill.jpg" controls preload="none" playsinline></video></div>
+        <h3>Игровой ролик, 10 минут</h3>
+        <div class="stats"><span>10:06</span><span>CTR <b>3,2 %</b></span><span>до 0:30 <b>49 %</b></span></div>
+        <p>Счётчик прогресса на экране и вставки, которые держат интригу.</p></div>
+      <div class="card"><div class="frame"><video src="dino.mp4" poster="dino.jpg" controls preload="none" playsinline></video></div>
+        <h3>Игровой ролик, 9 минут</h3>
+        <div class="stats"><span>8:45</span><span>CTR <b>2,6 %</b></span><span>до 0:30 <b>51 %</b></span></div>
+        <p>Анимированная графика поверх видео: счётчики, множители, всплывающие плашки.</p></div>
+    </div>
+  </section>
+
+  <section id="thumbs">
+    <div class="head"><span class="tag">V3</span><h2>Превью и обложки</h2>
+      <p>Яркие обложки, которые читаются даже с телефона. На каждый ролик 2–3 варианта на выбор. Нажмите, чтобы увеличить.</p></div>
+    <div class="thumbs">
+      <button type="button"><img src="th_chop_a1.jpg" alt="1538 деревьев и 0 долларов против 0 деревьев и 207 580 долларов" loading="lazy"><span>Chop A Forest, вариант A</span></button>
+      <button type="button"><img src="th_chop_a2.jpg" alt="Chop A Forest, вариант с крупным персонажем" loading="lazy"><span>Chop A Forest, вариант B</span></button>
+      <button type="button"><img src="th_chop_en.jpg" alt="0 долларов против миллиона" loading="lazy"><span>Chop A Forest, версия для США</span></button>
+      <button type="button"><img src="th_dino_money.jpg" alt="2 доллара против миллиарда, динозавры" loading="lazy"><span>Ride a Dino, основное</span></button>
+      <button type="button"><img src="th_dino_x.jpg" alt="Множитель x30 000 и упавший персонаж" loading="lazy"><span>Ride a Dino, запасное</span></button>
+      <button type="button"><img src="th_drill_ice.jpg" alt="Надпись Не добурили" loading="lazy"><span>Drill to Core, вариант A</span></button>
+      <button type="button"><img src="th_drill_revive.jpg" alt="Кнопка возродиться за 8 робуксов" loading="lazy"><span>Drill to Core, вариант B</span></button>
+      <button type="button"><img src="th_drill_core.jpg" alt="До ядра? со шкалой глубины" loading="lazy"><span>Drill to Core, вариант C</span></button>
+    </div>
+  </section>
+
+  <footer><span class="logo">Видеомонтаж и анимация</span><span class="mono">ПОРТФОЛИО · 2026</span></footer>
+</div>
+<div class="box" id="box" hidden><img id="boxImg" alt=""></div>
+<script>
+const box=document.getElementById('box'),bi=document.getElementById('boxImg');
+document.querySelectorAll('.thumbs button').forEach(b=>b.addEventListener('click',()=>{const i=b.querySelector('img');bi.src=i.src;bi.alt=i.alt;box.hidden=false}));
+box.addEventListener('click',()=>{box.hidden=true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')box.hidden=true});
+document.querySelectorAll('video').forEach(v=>v.addEventListener('play',()=>document.querySelectorAll('video').forEach(o=>{if(o!==v&&!o.muted)o.pause()})));
+</script>
+</body>
+</html>
